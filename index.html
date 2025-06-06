@@ -1,214 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz Page</title>
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f9;
-      color: #333;
-    }
-    .quiz-container {
-      max-width: 600px;
-      margin: 50px auto;
-      padding: 20px;
-      border-radius: 8px;
-      background-color: #fff;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    .quiz-header {
-      font-size: 18px;
-      margin-bottom: 20px;
-    }
-    .question {
-      margin-bottom: 15px;
-      font-size: 16px;
-    }
-    .choice {
-      margin-bottom: 10px;
-      display: block;
-    }
-    #submit-btn {
-      padding: 10px 20px;
-      background-color: #0066cc;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    #submit-btn:hover {
-      background-color: #004c99;
-    }
-    .results {
-      margin-top: 20px;
-      font-weight: bold;
-    }
-    .progress {
-      margin-top: 10px;
-      font-style: italic;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f3f3f3;
+        }
+        #calculator {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        #calculator #display {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            text-align: right;
+            border: none;
+            border-bottom: 2px solid #ccc;
+            outline: none;
+        }
+        #calculator .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        #calculator .buttons button {
+            padding: 15px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        #calculator .buttons button:hover {
+            background-color: #e0e0e0;
+        }
+        #calculator .buttons button.operator {
+            background-color: #ff9f43;
+            color: white;
+        }
+        #calculator .buttons button.operator:hover {
+            background-color: #ff7f00;
+        }
+        #calculator .buttons button.equal {
+            grid-column: span 4;
+            background-color: #54a0ff;
+            color: white;
+        }
+        #calculator .buttons button.equal:hover {
+            background-color: #2e86de;
+        }
+    </style>
 </head>
 <body>
-  <div class="quiz-container">
-    <div id="quiz-header">Answer the following questions:</div>
-    <div id="quiz">
-      <!-- Quiz questions will be dynamically inserted here by JavaScript -->
+    <div id="calculator">
+        <!-- Display for the result -->
+        <input type="text" id="display" disabled />
+        
+        <!-- Calculator Buttons -->
+        <div class="buttons">
+            <button onclick="clearDisplay()">C</button>
+            <button onclick="inputValue('(')">(</button>
+            <button onclick="inputValue(')')">)</button>
+            <button class="operator" onclick="inputValue('/')">/</button>
+            
+            <button onclick="inputValue('7')">7</button>
+            <button onclick="inputValue('8')">8</button>
+            <button onclick="inputValue('9')">9</button>
+            <button class="operator" onclick="inputValue('*')">×</button>
+            
+            <button onclick="inputValue('4')">4</button>
+            <button onclick="inputValue('5')">5</button>
+            <button onclick="inputValue('6')">6</button>
+            <button class="operator" onclick="inputValue('-')">-</button>
+            
+            <button onclick="inputValue('1')">1</button>
+            <button onclick="inputValue('2')">2</button>
+            <button onclick="inputValue('3')">3</button>
+            <button class="operator" onclick="inputValue('+')">+</button>
+            
+            <button onclick="inputValue('0')">0</button>
+            <button onclick="inputValue('.')">.</button>
+            <button class="equal" onclick="calculate()">=</button>
+        </div>
     </div>
-    <button id="submit-btn">Submit Answers</button>
-    <div class="results" id="results" style="display: none;"></div>
-    <div class="progress" id="progress"></div>
-  </div>
-  <script src="quiz.js"></script>
-</body>
-</html>
 
+    <script>
+        // Function to update the display
+        function inputValue(value) {
+            const display = document.getElementById('display');
+            display.value += value;
+        }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz Page</title>
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f9;
-      color: #333;
-    }
-    .quiz-container {
-      max-width: 600px;
-      margin: 50px auto;
-      padding: 20px;
-      border-radius: 8px;
-      background-color: #fff;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    .quiz-header {
-      font-size: 18px;
-      margin-bottom: 20px;
-    }
-    .question {
-      margin-bottom: 15px;
-      font-size: 16px;
-    }
-    .choice {
-      margin-bottom: 10px;
-      display: block;
-    }
-    #submit-btn {
-      padding: 10px 20px;
-      background-color: #0066cc;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    #submit-btn:hover {
-      background-color: #004c99;
-    }
-    .results {
-      margin-top: 20px;
-      font-weight: bold;
-    }
-    .progress {
-      margin-top: 10px;
-      font-style: italic;
-    }
-  </style>
-</head>
-<body>
-  <div class="quiz-container">
-    <div id="quiz-header">Answer the following questions:</div>
-    <div id="quiz">
-      <!-- Quiz questions will be dynamically inserted here by JavaScript -->
-    </div>
-    <button id="submit-btn">Submit Answers</button>
-    <div class="results" id="results" style="display: none;"></div>
-    <div class="progress" id="progress"></div>
-  </div>
-  <script src="quiz.js"></script>
-</body>
-</html>
+        // Function to clear the display
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz Page</title>
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f9;
-      color: #333;
-    }
-    .quiz-container {
-      max-width: 600px;
-      margin: 50px auto;
-      padding: 20px;
-      border-radius: 8px;
-      background-color: #fff;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    .quiz-header {
-      font-size: 18px;
-      margin-bottom: 20px;
-    }
-    .question {
-      margin-bottom: 15px;
-      font-size: 16px;
-    }
-    .choice {
-      margin-bottom: 10px;
-      display: block;
-    }
-    #submit-btn {
-      padding: 10px 20px;
-      background-color: #0066cc;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    #submit-btn:hover {
-      background-color: #004c99;
-    }
-    .results {
-      margin-top: 20px;
-      font-weight: bold;
-    }
-    .progress {
-      margin-top: 10px;
-      font-style: italic;
-    }
-  </style>
-</head>
-<body>
-  <div class="quiz-container">
-    <div id="quiz-header">Answer the following questions:</div>
-    <div id="quiz">
-      <!-- Quiz questions will be dynamically inserted by JavaScript -->
-    </div>
-    <button id="submit-btn">Submit Answers</button>
-    <div class="results" id="results" style="display: none;"></div>
-    <div class="progress" id="progress"></div>
-  </div>
-  <script src="quiz.js"></script>
+        // Function to calculate the result
+        function calculate() {
+            const display = document.getElementById('display');
+            try {
+                // Evaluate the input and display the result
+                display.value = eval(display.value);
+            } catch (error) {
+                display.value = 'Error';
+            }
+        }
+    </script>
 </body>
 </html>

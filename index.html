@@ -1,79 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>School Website</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        /* Navigation Bar */
-        .navbar {
-            position: sticky;
-            top: 0;
-            background-color: #0047ab;
-            color: white;
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .navbar a {
-            text-decoration: none;
-            color: white;
-            margin: 0 10px;
-        }
-
-        .navbar a:hover {
-            color: #ffcc00;
-        }
-
-        /* Main Section Styling */
-        .main-section {
-            padding: 20px;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Page</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+    .quiz-container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      border-radius: 8px;
+      background-color: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .quiz-header {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    .question {
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+    .choice {
+      margin-bottom: 10px;
+      display: block;
+    }
+    #submit-btn {
+      padding: 10px 20px;
+      background-color: #0066cc;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    #submit-btn:hover {
+      background-color: #004c99;
+    }
+    .results {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    .progress {
+      margin-top: 10px;
+      font-style: italic;
+    }
+  </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <div class="navbar">
-        <div class="logo">
-            <h1>School Name</h1>
-        </div>
-        <div class="nav-links">
-            <a href="#about">About</a>
-            <a href="#academics">Academics</a>
-            <a href="#admissions">Admissions</a>
-            <a href="#contact">Contact</a>
-        </div>
+  <div class="quiz-container">
+    <div id="quiz-header">Answer the following questions:</div>
+    <div id="quiz">
+      <!-- Quiz questions will be dynamically inserted here by JavaScript -->
     </div>
+    <button id="submit-btn">Submit Answers</button>
+    <div class="results" id="results" style="display: none;"></div>
+    <div class="progress" id="progress"></div>
+  </div>
+  <script src="quiz.js"></script>
+</body>
+</html>
 
-    <!-- Main Section -->
-    <div class="main-section">
-        <h2 id="about">About Us</h2>
-        <p>Welcome to our school! Our mission is to provide excellent education and foster creativity, leadership, and integrity.</p>
 
-        <h2 id="academics">Academics</h2>
-        <p>Our school offers programs for elementary, middle, and high school students with a focus on innovation and critical thinking.</p>
-
-        <h2 id="admissions">Admissions</h2>
-        <p>Learn about our admission process and get started on joining our school community!</p>
-
-        <h2 id="contact">Contact Us</h2>
-        <p>Feel free to reach out via <strong>Phone:</strong> +123 456 7890 or <strong>Email:</strong> school@email.example.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Page</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+    .quiz-container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      border-radius: 8px;
+      background-color: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .quiz-header {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    .question {
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+    .choice {
+      margin-bottom: 10px;
+      display: block;
+    }
+    #submit-btn {
+      padding: 10px 20px;
+      background-color: #0066cc;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    #submit-btn:hover {
+      background-color: #004c99;
+    }
+    .results {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    .progress {
+      margin-top: 10px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <div id="quiz-header">Answer the following questions:</div>
+    <div id="quiz">
+      <!-- Quiz questions will be dynamically inserted here by JavaScript -->
     </div>
+    <button id="submit-btn">Submit Answers</button>
+    <div class="results" id="results" style="display: none;"></div>
+    <div class="progress" id="progress"></div>
+  </div>
+  <script src="quiz.js"></script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Page</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+    .quiz-container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      border-radius: 8px;
+      background-color: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .quiz-header {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    .question {
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+    .choice {
+      margin-bottom: 10px;
+      display: block;
+    }
+    #submit-btn {
+      padding: 10px 20px;
+      background-color: #0066cc;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    #submit-btn:hover {
+      background-color: #004c99;
+    }
+    .results {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    .progress {
+      margin-top: 10px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <div id="quiz-header">Answer the following questions:</div>
+    <div id="quiz">
+      <!-- Quiz questions will be dynamically inserted by JavaScript -->
+    </div>
+    <button id="submit-btn">Submit Answers</button>
+    <div class="results" id="results" style="display: none;"></div>
+    <div class="progress" id="progress"></div>
+  </div>
+  <script src="quiz.js"></script>
 </body>
 </html>
